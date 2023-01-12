@@ -1,51 +1,52 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-#from .form import *
+from .forms import *
+from .models import *
 
 # Create your views here.
 def home(request):
     return render(request, 'meuapp/home.html')
 
+def crudCurso(request):
+    cursos = Curso.objects.all().order_by('nome')
+    conteudo = {"cursos": cursos}
+
+    return render(request, 'meuapp/cursos/crud.html', conteudo)    
+
 def createCurso(request):
     form = CursoForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect("/listagemCurso")  # mudar
+        return redirect("curso.crud") 
 
-    conteudo = {"formulario": form}
-    return render(request, 'meuapp/cursos/criar.html', conteudo) #mudar
+    conteudo = {"form": form}
+    return render(request, 'meuapp/cursos/criar.html', conteudo) 
 
 
 def listagemCurso(request):
-    curso = Curso.objects.all().order_by('nome')
-    conteudo = {"curso": curso}
+    cursos = Curso.objects.all().order_by('nome')
+    conteudo = {"cursos": cursos}
 
-    return render(request, 'meuapp/cursos/listagem.html', conteudo) #mudar
-
-
-def crud(request):
-     return render(request, 'meuapp/cursos/crud.html')    
-
+    return render(request, 'meuapp/cursos/listagem.html', conteudo) 
 
 def updateCurso(request, id):
     curso = Curso.objects.get(pk=id)
     form = CursoForm(request.POST or None, instance=curso)
     if form.is_valid():
         form.save()
-        return redirect("/listagemCurso")  # mudar
+        return redirect("curso.crud") 
 
-    conteudo = {"formulario": form}
-    return render(request, 'meuapp/cursos/criar.html', conteudo)
+    conteudo = {"form": form, "curso": curso}
+    return render(request, 'meuapp/cursos/editar.html', conteudo)
 
 
 def deleteCurso(request, id):
     curso = Curso.objects.get(pk=id)
     curso.delete()
-    return redirect("/listagemCurso") #mudar
+    return redirect("curso.crud") 
 
 def consulta(request):
     return render(request, 'meuapp/consulta.html')
-
 
 def search(request):
     results = []

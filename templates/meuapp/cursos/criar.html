@@ -1,13 +1,18 @@
 {% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    <h1>Sobre os componentes aqui</h1>
+                <div class="card-header pb-0">
+                    <h1>Criar Curso</h1>
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur maiores officia labore commodi exercitationem dicta, earum pariatur explicabo expedita. Impedit iusto sapiente vitae suscipit, nulla dolor eveniet soluta doloribus laboriosam.
+                <div class="card-body pt-1">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <button class="btn btn-primary" type="submit">Confirmar</button>
+                    </form>
                 </div>
             </div>
         </div>
