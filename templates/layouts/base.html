@@ -99,12 +99,23 @@
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
+            {% if user.is_authenticated %}
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+              <a href="{% url 'logout' %}" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <span class="d-sm-inline d-none">Sair</span>
               </a>
             </li>
+
+            {% else %}
+            <li class="nav-item d-flex align-items-center">
+              <a href="{% url 'login' %}" class="nav-link text-white font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Entrar</span>
+              </a>
+            </li>
+
+            {% endif %}
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
