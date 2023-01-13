@@ -15,7 +15,7 @@
                             <div class="input-group">
                                 <span class="input-group-text text-body"><i class="fas fa-search"
                                         aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" placeholder="Escreva aqui...">
+                                <input type="text" class="form-control" placeholder="Escreva aqui..." name="txtPesquisa">
                             </div>
                             <button class="btn btn-primary my-0 ms-2" type="submit">Buscar</button>
                         </div>
@@ -24,45 +24,64 @@
                     <p class="my-2">Digite o que deseja buscar</p>
                 </div>
             </div>
-            <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                Nome do curso
-                            </th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                Modalidade
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if cursos %}
-                            Resultados para: "{{ txtPesquisa }}"
-                            {% for curso in cursos %}
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-3 py-1">
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm"></h6>
-                                            <p class="text-xs text-secondary mb-0">{{ curso.nome }}</p>
-                                        </div>
-                                    </div>
-                                </td>
 
-                                <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">{{ curso.modalidade }}</span>
-                                </td>
+            {% if  txtPesquisa %}
+                Resultados para: "{{ txtPesquisa }}"
+            <div class="table-responsive p-0">
+               
+
+                    {% if cursos %}
+                    <table class="table align-items-center mb-0">
+                        
+                        <thead>
+                            
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    Nome do curso
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    Modalidade
+                                </th>
                             </tr>
-                            {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td class="ps-4">Não há nada para mostrar.</td>
-                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            
+
+                                {% for curso in cursos %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-3 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"></h6>
+                                                <p class="text-xs text-secondary mb-0">{{ curso.nome }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="align-middle">
+                                        <span class="text-secondary text-xs font-weight-bold">{{ curso.modalidade }}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            
+                        </tbody>
+                        
+                    </table>
+
+                    {% else %}
+                           <br> 
+                           <tr>
+                                <td class="ps-4">Não há nada para mostrar.</td>
+                            </tr>
+                            {% endif %}
+                
+                    
             </div>
+            
+            {% endif %}
+
+
+            <!-- Divs genéricas -->
         </div>
     </div>
 </div>
