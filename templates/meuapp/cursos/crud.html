@@ -23,33 +23,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for curso in cursos %}
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-3 py-1">                                    
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm"></h6>
-                                            <p class="text-xs text-secondary mb-0">{{ curso.nome }}</p>
+                            {% if cursos %}
+                                {% for curso in cursos %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-3 py-1">                                    
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"></h6>
+                                                <p class="text-xs text-secondary mb-0">{{ curso.nome }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                
-                                <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">{{ curso.modalidade }}</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <a href="{% url 'curso.update' curso.pk %}" class="text-secondary font-weight-bold text-xs"
-                                        data-toggle="tooltip" data-original-title="Editar curso">
-                                        Editar
-                                    </a> 
-                                    |
-                                    <a href="{% url 'curso.delete' curso.pk %}" class="text-secondary font-weight-bold text-xs"
-                                        data-toggle="tooltip" data-original-title="Apagar curso">
-                                        Apagar
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
+                                    </td>
+                                    
+                                    <td class="align-middle">
+                                        <span class="text-secondary text-xs font-weight-bold">{{ curso.modalidade }}</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <a href="{% url 'curso.update' curso.pk %}" class="text-secondary font-weight-bold text-xs"
+                                            data-toggle="tooltip" data-original-title="Editar curso">
+                                            Editar
+                                        </a> 
+                                        |
+                                        <a href="{% url 'curso.delete' curso.pk %}" class="text-secondary font-weight-bold text-xs"
+                                            data-toggle="tooltip" data-original-title="Apagar curso">
+                                            Apagar
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="ps-4">Não há nada para mostrar.</td>
+                                </tr>
+                            {% endif %}
+
                         </tbody>
                     </table>
                 </div>

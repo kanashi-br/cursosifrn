@@ -5,4 +5,4 @@ from .models import *
 class CursoForm(forms.ModelForm):
     class Meta:
         model = Curso
-        fields = ['nome', 'modalidade']
+        fields = ['nome', 'modalidade']        

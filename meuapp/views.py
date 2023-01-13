@@ -50,15 +50,13 @@ def deleteCurso(request, id):
     return redirect("curso.crud") 
 
 def consulta(request):
-    return render(request, 'meuapp/consulta.html')
-
-def search(request):
-    results = []
-    if request.method == "GET":
-        query = request.GET.get('search')
-
-    results = Curso.objects.filter(nome__icontains=query)
-    return render(request, "search.html", {'query': query, 'results': results})
+    if request.method == 'GET':    
+        txtPesquisa = request.GET.get('txtPesquisa')
+        if txtPesquisa is None: 
+            txtPesquisa = ''
+        cursos = Curso.objects.filter(nome__icontains=txtPesquisa).order_by('nome')
+        
+        return render(request, "meuapp/consulta.html", { 'cursos': cursos, 'txtPesquisa': txtPesquisa })
 
 def sobre(request):
     return render(request, 'meuapp/sobre.html')
