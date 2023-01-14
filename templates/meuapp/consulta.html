@@ -9,8 +9,7 @@
                     <h1 class="fs-2">Consultar</h1>
                 </div>
                 <div class="card-body">
-                    <form method="GET">
-                        {% csrf_token %}
+                    <form method="GET">                        
                         <div class="d-flex align-items-center">
                             <div class="input-group">
                                 <span class="input-group-text text-body"><i class="fas fa-search"
@@ -26,7 +25,7 @@
             </div>
 
             {% if  txtPesquisa %}
-                Resultados para: "{{ txtPesquisa }}"
+                <p class="mx-3">Resultados para: "{{ txtPesquisa }}"</p>
             <div class="table-responsive p-0">
                
 
@@ -70,9 +69,9 @@
 
                     {% else %}
                            <br> 
-                           <tr>
-                                <td class="ps-4">Não há nada para mostrar.</td>
-                            </tr>
+                            
+                                <p class="mx-3"><strong>Não há nada para mostrar.</strong></p>
+                            
                             {% endif %}
                 
                     
